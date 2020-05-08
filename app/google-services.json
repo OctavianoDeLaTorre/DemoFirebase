@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "144289406647",
+    "firebase_url": "https://demossensores.firebaseio.com",
+    "project_id": "demossensores",
+    "storage_bucket": "demossensores.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144289406647:android:bc5fbea12a2060688c7732",
+        "android_client_info": {
+          "package_name": "com.example.sensres_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144289406647-at1f42u83jhor300ioft5j1bnusmpa8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAdpnbJDT8D5qtgBfQg44_0upglW584z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144289406647-at1f42u83jhor300ioft5j1bnusmpa8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
