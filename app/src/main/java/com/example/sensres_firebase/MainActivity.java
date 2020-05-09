@@ -10,9 +10,16 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.DecimalFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private DatabaseReference mDatabase;
 
     private TextView txtAcelerometro;
     private TextView txtLuz;
@@ -21,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SensorManager sensorManager;
     DecimalFormat formato1 = new DecimalFormat("#.##");
+    Date fecha = new Date();
 
     private Sensor sensorAcelerometro;
     private SensorEventListener oyenteAcelerometro = new SensorEventListener() {
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             float y = event.values[1];
             float z = event.values[2];
             txtAcelerometro.setText(formato1.format(x)+" m/s, " + formato1.format(y) +" m/s, " + formato1.format(z) +" m/s " );
+            mDatabase.child("demossensores").child("Acelerometro").setValue(new MySensor("Acelerometro",formato1.format(x)+" m/s, " + formato1.format(y) +" m/s, " + formato1.format(z) +" m/s "));
         }
 
         @Override
@@ -44,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         public void onSensorChanged(SensorEvent event) {
             float niveLuz = event.values[0];
             txtLuz.setText(niveLuz+" lx");
+            mDatabase.child("demossensores").child("Sensor de luz").setValue(new MySensor("Sensor de luz",niveLuz+" lx"));
         }
 
         @Override
@@ -60,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             float y = event.values[1];
             float z = event.values[2];
             txtGravedad.setText(formato1.format(x)+" m/s, " + formato1.format(y) +" m/s, " + formato1.format(z) +" m/s " );
+            mDatabase.child("demossensores").child("Sensor de gravedad").setValue(new MySensor("Sensor de gravedad",formato1.format(x)+" m/s, " + formato1.format(y) +" m/s, " + formato1.format(z) +" m/s "));
         }
 
         @Override
@@ -74,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         public void onSensorChanged(SensorEvent event) {
             float distancia = event.values[0];
             txtProximidad.setText(distancia+" cm");
+            mDatabase.child("demossensores").child("Sensor de proximidad").setValue(new MySensor("Sensor de luz",distancia+" cm"));
         }
 
         @Override
@@ -88,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         configSensores();
         configViews();
     }
